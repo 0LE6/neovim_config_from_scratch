@@ -13,6 +13,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Con este require le decimos a lazy que para hacer el setup vaya al path que le indicamos.
+-- cuando tengamos esto, haremos un :so en modo normal, saldremos con un :wq y al entrar de nuevo se instalaran los plugins que le especifiquemos al igual que el propio lazy.
 require("lazy").setup({
     spec = "0LE6.lazy",
     change_detection = { notify = false }
