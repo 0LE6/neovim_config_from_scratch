@@ -6,9 +6,10 @@ Se requiere la instalación de Node.js (versión superior a 20.x)
 Para que todo sea más sencillo y rapido, usar Homebrew como manejador de paquetes.
 
 https://brew.sh/
+
 '''bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-'
+'''
 
 Cuando lo tengamos, lo emplearemos para instalar Node, gcc, ripgrep...
 Copiar, pegar y ejecutar el siguiente script de bash
@@ -36,5 +37,5 @@ brew install lua
 brew install rust
 
 echo "Perfecto, en principio todo ya está preparado!"
-'
+'''
 
