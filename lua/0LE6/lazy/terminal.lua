@@ -6,17 +6,25 @@ return {
 
     config = function ()
         require('toggleterm').setup({
-            open_mapping = [[<leader>t]],  -- Mapeo para abrir y cerrar el terminal
-            hide_numbers = true,           -- Oculta los números de línea en el terminal
+            open_mapping = [[<leader>t]],
+            hide_numbers = true,
             shade_filetypes = {},
             shade_terminals = true,
-            shading_factor = 2,            -- El terminal será un poco más oscuro que la ventana normal
-            start_in_insert = true,        -- Comienza en modo insertar
-            insert_mappings = true,        -- Permite mapeos en modo insertar
+            shading_factor = 2,
+            start_in_insert = true,
+            insert_mappings = true,  -- Important for defining terminal-specific mappings
             persist_size = true,
-            direction = 'float',           -- Puedes cambiar esto a 'horizontal' o 'vertical'
-            close_on_exit = true,          -- Cierra el terminal automáticamente al salir
-            shell = vim.o.shell            -- Usa la shell predeterminada de Neovim
+            direction = 'float',
+            close_on_exit = true,
+            shell = vim.o.shell,
+
+            -- Creamos una funcion para pasarle al "on_open".
+            on_open = function(term)
+                -- Deshabilitamos el mapeo de <leader>t dentro del terminal, así no cerramos sin querer la terminal
+                vim.api.nvim_buf_del_keymap(term.bufnr, 't', '<leader>t')
+                -- Cerramos el terminal con tecla Esc
+                vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<Esc>', '<cmd>close<CR>', {noremap = true, silent = true})
+            end,
         })
     end
 }
