@@ -21,15 +21,14 @@ local function my_on_attach(bufnr)
 	vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
     vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
 
-
-    -- Presionar el leader (espacio) junto a una "a" -> lo abrimos
-    --vim.keymap.set('n', '<leader>a', api.tree.open(), opts)
-	
-	-- Presionar el leader (espacio) junto a una "q" -> lo... quitamos lol
-	--vim.keymap.set('n', '<leader>q', api.tree.close, opts('Close'))
-
+    -- Con espacio + "q" abrimos y cerramos el tree.
     vim.keymap.set('n', '<leader>q', function()
         api.tree.toggle()
+    end)
+
+    -- Con leader + "r" pasamos el focus del file al tree de nuevo.
+    vim.keymap.set('n', '<leader>r', function()
+        api.tree.focus()
     end)
 end
 

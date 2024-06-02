@@ -1,10 +1,11 @@
--- Copiado de https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/colors.lua
-function ColorMyPencils(color)
+-- Copiado de y modificado a raíz de: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/colors.lua
+function setting_colors(color)
 	color = color or "rose-pine"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    
 
 end
 
@@ -36,15 +37,18 @@ return {
         name = "rose-pine",
         config = function()
             require('rose-pine').setup({
+                variant = "auto",
                 disable_background = true,
                 styles = {
                     italic = false,
+                    -- importante para la trasparencia en el background
+                    transparency = true,
                 },
             })
 
             vim.cmd("colorscheme rose-pine")
 
-            ColorMyPencils()
+            setting_colors()
         end
     },
 }
