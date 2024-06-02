@@ -7,14 +7,14 @@ Para que todo sea más sencillo y rapido, usar Homebrew como manejador de paquet
 
 https://brew.sh/
 
-'''bash
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-'''
+```
 
 Cuando lo tengamos, lo emplearemos para instalar Node, gcc, ripgrep...
 Copiar, pegar y ejecutar el siguiente script de bash
 
-'''bash
+```bash
 # Hacemos un update
 brew update
 
@@ -37,5 +37,5 @@ brew install lua
 brew install rust
 
 echo "Perfecto, en principio todo ya está preparado!"
-'''
+```
 
