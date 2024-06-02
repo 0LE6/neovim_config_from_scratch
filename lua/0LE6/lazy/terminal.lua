@@ -6,7 +6,7 @@ return {
 
     config = function ()
         require('toggleterm').setup({
-            open_mapping = false,
+            open_mapping = false, -- no mappeo automático
             hide_numbers = true,
             shade_filetypes = {},
             shade_terminals = true,
@@ -20,9 +20,7 @@ return {
 
             -- Creamos una funcion para pasarle al "on_open".
             on_open = function(term)
-                -- Deshabilitamos el mapeo de <leader>t dentro del terminal, así no cerramos sin querer la terminal
-                --vim.api.nvim_buf_del_keymap(term.bufnr, 't', '<leader>t')
-                -- Cerramos el terminal con tecla Esc
+                -- Cerramos el terminal con tecla Esc cuando estemos dentro de este.
                 vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<Esc>', '<cmd>close<CR>', {noremap = true, silent = true})
             end,
 
