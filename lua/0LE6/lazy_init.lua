@@ -14,7 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Con este require le decimos a lazy que para hacer el setup vaya al path que le indicamos.
--- cuando tengamos esto, haremos un :so en modo normal, saldremos con un :wq y al entrar de nuevo se instalaran los plugins que le especifiquemos al igual que el propio lazy.
+-- Cuando tengamos esto, haremos un :so en modo normal, saldremos con un :wq y al entrar de nuevo se instalaran los plugins que le especifiquemos al igual que el propio lazy.
+-- En el root de nuesto setup, debajo del "init.lua" inicial veremos un .json, ahí se guardaran las direcciones a nuestros plugins instalados.
+-- NOTE: instrucciones para moverse por lazy: https://github.com/folke/lazy.nvim?tab=readme-ov-file#-usage
 require("lazy").setup({
     spec = "0LE6.lazy",
     change_detection = { notify = false }
