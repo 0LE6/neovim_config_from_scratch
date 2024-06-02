@@ -15,6 +15,24 @@ return {
     },
 
     config = function()
+        -- Configuración para obtener info sobre un componente del lenguaje mediante LSP,
+        -- posicionas el cursor sobre una palabra y le da a la "e" en modo normal.
+        local on_attach = function(client, bufnr)
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'e', '<cmd>lua vim.lsp.buf.hover()<CR>', {
+                noremap = true,
+                silent = true,
+                desc = 'Show hover information'
+            })
+        end
+
+        -- #3.
+        --local cmp = require('cmp')
+        local cmp_lsp = require("cmp_nvim_lsp")
+        local capabilities = vim.tbl_deep_extend(
+            "force",
+            {},
+            vim.lsp.protocol.make_client_capabilities(),
+            cmp_lsp.default_capabilities())
 
         -- Copia y pega de https://lsp-zero.netlify.app/v3.x/getting-started.html#automatic-setup
         local lsp_zero = require('lsp-zero')
@@ -39,7 +57,10 @@ return {
             },
             handlers = {
                 function(server_name)
-                    require('lspconfig')[server_name].setup({})
+                    require('lspconfig')[server_name].setup({
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                    })
                 end,
             },
         })
