@@ -27,9 +27,9 @@ brew install node
 # Instalamos ripgrep, super útil para buscador luego dentro de archivos
 brew install ripgrep
 
-# Instalamos cosas para el compilador de GNU...
+# (Para WSL) Instalamos cosas para el compilador de GNU...
 brew install fd
-brew install gcc
+sudo apt install build-essential
 
 # Instalamos un par de cosillas para unos idiomas
 brew install python
