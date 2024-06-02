@@ -25,24 +25,46 @@ return {
             })
         end
 
-        -- #3.
-        --local cmp = require('cmp')
+        -- Configuración de las capacidades para LSP y nvim-cmp.
+        local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+            cmp_lsp.default_capabilities()
+        )
 
         -- Copia y pega de https://lsp-zero.netlify.app/v3.x/getting-started.html#automatic-setup
+        -- Modificación del setup para lsp-zero, que facilita la configuración de LSP.
         local lsp_zero = require('lsp-zero')
+        lsp_zero.preset('recommended')
+        lsp_zero.setup({
+            capabilities = capabilities,
+            on_attach = on_attach
+        })
 
-        lsp_zero.on_attach(function(client, bufnr)
-            -- see :help lsp-zero-keybindings
-            -- to learn the available actions
-            lsp_zero.default_keymaps({buffer = bufnr})
-        end)
+        -- Configuración de nvim-cmp para autocompletado
+        cmp.setup({
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                end,
+            },
+            mapping = {
+                -- Con tabulación arriba y abajo nos movemos por las sugerencias.
+                ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ['<CR>'] = cmp.mapping.confirm({ select = true })  -- Enter para confirmar la selección
+            },
+            sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'buffer' },
+            })
+        })
 
+        -- En esta sección manejamos los LSP para lso idiomas que queramos y le pasamos algunas configuraicones que realizamos antes.
         -- to learn how to use mason.nvim
         -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
         require('mason').setup({})
