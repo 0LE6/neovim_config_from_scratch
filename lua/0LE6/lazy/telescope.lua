@@ -19,7 +19,7 @@ return {
 		vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 
 		-- leader fd -> Searches for the string under your cursor or selection in your current working directory
-		vim.keymap.set('n', '<leader>fd', builtin.grep_string, 
+		vim.keymap.set('n', '<leader>fd', 
 			function()
             			builtin.grep_string({ search = vim.fn.input("Search: ") })
         		end)
