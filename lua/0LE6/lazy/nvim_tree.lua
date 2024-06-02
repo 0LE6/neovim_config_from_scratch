@@ -16,16 +16,22 @@ local function my_on_attach(bufnr)
 	end
 
 	-- El mappeo de los shortcuts personalizados se realizan en base a su API
-	-- Presionar el leader (espacio) junto a una "a" -> lo abrimos
-	vim.keymap.set('n', '<leader>a', api.node.open.edit(), opts('Open'))
+    
+    -- Abrir un file, con un "Enter" o un "doble click" con el mouse sobre él.
+	vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
+    vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
+
+
+    -- Presionar el leader (espacio) junto a una "a" -> lo abrimos
+    --vim.keymap.set('n', '<leader>a', api.tree.open(), opts)
 	
 	-- Presionar el leader (espacio) junto a una "q" -> lo... quitamos lol
-	vim.keymap.set('n', '<leader>q', api.tree.close(), opts('Close'))
-	-- ejemplo	
-	-- vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
+	--vim.keymap.set('n', '<leader>q', api.tree.close, opts('Close'))
+
+    vim.keymap.set('n', '<leader>q', function()
+        api.tree.toggle()
+    end)
 end
-
-
 
 return {
 	'nvim-tree/nvim-tree.lua',
@@ -36,7 +42,7 @@ return {
 
 	config = function()
 		require('nvim-tree').setup {
-			-- Le pasamos la configuración que realizamos antes
+            -- Le pasamos la configuración que realizamos antes
 			on_attach = my_on_attach,
 		}
 	end
