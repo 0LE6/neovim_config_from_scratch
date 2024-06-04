@@ -3,6 +3,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
+        -- NOTE: importante para usar en Windows
+        -- https://github.com/nvim-treesitter/nvim-treesitter/issues/5264#issuecomment-1846339757
+        -- Especificar el uso de 'clang' para la compilación de los parsers
+        --require'nvim-treesitter.install'.compilers = { "clang" } -- descomentar línea en Windows
+
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {

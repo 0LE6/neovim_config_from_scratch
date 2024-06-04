@@ -1,8 +1,32 @@
-# De momento en Windows peta
-NOTE: peta por temas de Windows y alguno de los plugins, que hace que __"crashee"__
-Se requiere la instalación de Node.js (versión superior a 20.x)
+# Config Windows
+Para que funcione en Windows se ha de hacer lo siguiete:
 
-# Usar Linux o en su defecto WSL
+Instalar __scoop__ como gestor de instalaciónd de paquetes desde este link https://scoop.sh/, copia el script de powershell que hay para su instalación y listo.
+
+Tener instalado LLVM y GCC, emplear el gestor de paquetes scoop (no hace halta luego añadir al PATH, se hace automatico con Scoop)
+````bash
+scoop install llvm
+
+scoop install gcc
+````
+
+También hac falta la última versión de nodejs, instalamos con scoop también:
+
+````bash
+scoop install node
+``````
+
+Y por ultimo las herramientas de fd y ripgrep para temas de busquedas dentro de archivos:
+
+````bash
+scoop install ripgrep
+
+scoop install fd
+``````
+
+NOTE: quizás se me escape algún detalle más, lo añadiriá aquí como update.
+
+# Config Linux o en su defecto WSL
 Para que todo sea más sencillo y rapido, usar Homebrew como manejador de paquetes.
 
 https://brew.sh/
@@ -24,11 +48,11 @@ brew install neovim
 # Instalamos Node
 brew install node
 
-# Instalamos ripgrep, super útil para buscador luego dentro de archivos
+# Instalamos ripgrep y fd, super útil para buscador luego dentro de archivos
 brew install ripgrep
+brew install fd
 
 # (Para WSL) Instalamos cosas para el compilador de GNU...
-brew install fd
 sudo apt install build-essential
 
 # Instalamos un par de cosillas para unos idiomas
