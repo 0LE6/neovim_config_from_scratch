@@ -8,9 +8,9 @@ local function my_on_attach(bufnr)
 	local function opts(desc)
 		return {
 			desc = 'nvim-tree: ' .. desc,
-			buffer = bufnr, 
+			buffer = bufnr,
 			noremap = true,
-			silent = true, 
+			silent = true,
 			nowait = true
 		}
 	end

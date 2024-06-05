@@ -1,11 +1,10 @@
 -- Copiado de y modificado a raíz de: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/colors.lua
-function setting_colors(color)
+function settingColors(color)
 	color = color or "rose-pine"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    
 
 end
 
@@ -48,7 +47,7 @@ return {
 
             vim.cmd("colorscheme rose-pine")
 
-            setting_colors()
+            settingColors()
         end
     },
 }
