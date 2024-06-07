@@ -2,4 +2,4 @@
 require("0LE6")
 
 -- TODO: eliminar, esto es solo una prueba
-print("Hello :)")
+print("Let's code :)")
