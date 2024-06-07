@@ -20,7 +20,7 @@ local function my_on_attach(bufnr)
     -- Abrir un file, con un "Enter" o un "doble click" con el mouse sobre él.
 	vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
     vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
-
+    
     -- Con espacio + "q" abrimos y cerramos el tree.
     vim.keymap.set('n', '<leader>q', function()
         api.tree.toggle()
@@ -30,6 +30,12 @@ local function my_on_attach(bufnr)
     vim.keymap.set('n', '<leader>r', function()
         api.tree.focus()
     end)
+
+    -- Intento abrir en nueva tab un file desde el tree:
+    vim.keymap.set('n', '<leader><Tab>', function ()
+        api.node.open.tab()
+    end)
+
 end
 
 return {
