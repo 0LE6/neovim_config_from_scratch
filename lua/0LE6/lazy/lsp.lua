@@ -72,7 +72,7 @@ return {
             -- NOTE: Aquí metemos todos los LSP de los lenguajes que querramos 
             ensure_installed = {
                 'rust_analyzer',
-                --'tsserver',
+                'tsserver',
                 'pyright',
                 'lua_ls'
 

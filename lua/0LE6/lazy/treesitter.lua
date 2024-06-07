@@ -3,16 +3,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-        -- NOTE: importante para usar en Windows
+        -- NOTE: importante para usar en Windows (quizás se necesite en ciertos casos para funcionar)
         -- https://github.com/nvim-treesitter/nvim-treesitter/issues/5264#issuecomment-1846339757
         -- Especificar el uso de 'clang' para la compilación de los parsers
         --require'nvim-treesitter.install'.compilers = { "clang" } -- descomentar línea en Windows
 
         require("nvim-treesitter.configs").setup({
-            -- A list of parser names, or "all"
+            -- Poner los parsers del lenguajes especificos que necesitamos o bien se puede usar "all". 
             ensure_installed = {
                 "vimdoc", "javascript", "typescript", "c", "lua", "rust",
-                "jsdoc", "bash", "python", "c_sharp", "html", "java", 
+                "jsdoc", "bash", "python", "c_sharp", "html", "java",
 		"json", "sql", "vim", "xml", "css"
             },
 
