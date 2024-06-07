@@ -1,6 +1,8 @@
 
 ![Powershell](pic.png)
 
+![Powershell2](pic2.png)
+
 # Config Windows
 Para que funcione en Windows se ha de hacer lo siguiete:
 
