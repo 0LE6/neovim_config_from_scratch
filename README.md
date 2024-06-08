@@ -65,6 +65,9 @@ brew install python
 brew install lua
 brew install rust
 
+# Instalar Yarn (para el plugin de Markdown)
+sudo apt install yarn
+
 echo "Perfecto, en principio todo ya está preparado!"
 ```
 
