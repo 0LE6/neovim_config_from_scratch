@@ -9,7 +9,7 @@ Para que funcione en Windows se ha de hacer lo siguiete:
 Instalar __scoop__ como gestor de instalaciónd de paquetes desde este link https://scoop.sh/, copia el script de powershell que hay para su instalación y listo.
 
 Tener instalado LLVM y GCC, emplear el gestor de paquetes scoop (no hace halta luego añadir al PATH, se hace automatico con Scoop)
-````bash
+````powershell
 scoop install llvm
 
 scoop install gcc
@@ -17,19 +17,19 @@ scoop install gcc
 
 También hac falta la última versión de nodejs, instalamos con scoop también:
 
-````bash
+````powrshell
 scoop install node
 ``````
 
 Y por ultimo las herramientas de fd y ripgrep para temas de busquedas dentro de archivos:
 
-````bash
+`````powershell
 scoop install ripgrep
 
 scoop install fd
-``````
+`````
 
-NOTE: quizás se me escape algún detalle más, lo añadiriá aquí como update.
+__NOTE:__ quizás se me escape algún detalle más, lo añadiriá aquí como update.
 
 # Config Linux o en su defecto WSL
 Para que todo sea más sencillo y rapido, usar Homebrew como manejador de paquetes.
