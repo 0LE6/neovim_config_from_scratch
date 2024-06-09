@@ -32,6 +32,9 @@ scoop install fd
 NOTE: quizás se me escape algún detalle más, lo añadiriá aquí como update.
 
 # Config Linux o en su defecto WSL
+
+![Debian_Alacritty](pic3debian.png)
+
 Para que todo sea más sencillo y rapido, usar Homebrew como manejador de paquetes.
 
 https://brew.sh/
