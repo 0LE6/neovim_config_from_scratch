@@ -16,3 +16,7 @@ vim.keymap.set('n', '<Tab>', ':tabnext<CR>', {noremap = true, silent = true})
 -- Mapeo para ir a la pestaña anterior con Shift+Tab
 vim.keymap.set('n', '<S-Tab>', ':tabprevious<CR>', {noremap = true, silent = true})
 
+-- Añadimos el deshacer y rehacer (el típico ctrl z & ctrl y) en modo I 
+-- Warning: no va char x por, sino modificación x modificación entre modo I & modo N
+vim.keymap.set('i', '<C-z>', '<C-g>u<C-o>u', {noremap = true, silent = true} )
+vim.keymap.set('i', '<C-y>', '<C-g>u<C-o><C-r>', {noremap = true, silent = true} )
