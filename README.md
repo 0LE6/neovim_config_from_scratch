@@ -32,6 +32,9 @@ scoop install fd
 __NOTE:__ quizás se me escape algún detalle más, lo añadiriá aquí como update.
 
 # Config Linux o en su defecto WSL
+
+![Debian_Alacritty](pic3debian.png)
+
 Para que todo sea más sencillo y rapido, usar Homebrew como manejador de paquetes.
 
 https://brew.sh/
@@ -41,33 +44,11 @@ https://brew.sh/
 ```
 
 Cuando lo tengamos, lo emplearemos para instalar Node, gcc, ripgrep...
-Copiar, pegar y ejecutar el siguiente script de bash
+Copiar, pegar y enter para que se ejecute el script de bash de instalación de herramientas que necesitaremos:
 
 ```bash
-# Hacemos un update
-brew update
-
-# Instalación de neovim (si aun no lo tenemos, usar la ver. más reciente)
-brew install neovim
-
-# Instalamos Node
-brew install node
-
-# Instalamos ripgrep y fd, super útil para buscador luego dentro de archivos
-brew install ripgrep
-brew install fd
-
-# (Para WSL) Instalamos cosas para el compilador de GNU...
-sudo apt install build-essential
-
-# Instalamos un par de cosillas para unos idiomas
-brew install python
-brew install lua
-brew install rust
-
-# Instalar Yarn (para el plugin de Markdown)
-sudo apt install yarn
-
-echo "Perfecto, en principio todo ya está preparado!"
+# Primero hacemos ejecutable nuestro script run_setup.sh
+chmod +x run_setup.sh
+./run_setup.sh
 ```
 
