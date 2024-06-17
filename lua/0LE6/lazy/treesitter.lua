@@ -1,40 +1,44 @@
--- Editado sobre copia de: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/treesitter.lua
+-- treesitter java-config
+
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-        -- NOTE: importante para usar en Windows (quizás se necesite en ciertos casos para funcionar)
-        -- https://github.com/nvim-treesitter/nvim-treesitter/issues/5264#issuecomment-1846339757
-        -- Especificar el uso de 'clang' para la compilación de los parsers
-        --require'nvim-treesitter.install'.compilers = { "clang" } -- descomentar línea en Windows
+        -- Función para filtrar el PATH y excluir Cygwin
+        local function adjust_path()
+            local system_path = vim.env.PATH
+            local paths = {}
+            for path in string.gmatch(system_path, "[^;]+") do
+                if not string.find(path, "cygwin") then
+                    table.insert(paths, path)
+                end
+            end
+            -- Añadir la ruta de GCC al principio
+            table.insert(paths, 1, "C:/Users/PONER_EL_USUARIO_AQUI/scoop/apps/mingw-w64/current/mingw64/bin")
+            return table.concat(paths, ";")
+        end
+
+        vim.env.PATH = adjust_path()
+        vim.env.C_INCLUDE_PATH = "C:/Users/PONER_EL_USUARIO_AQUI/scoop/apps/gcc/current/include"
+        vim.env.CPLUS_INCLUDE_PATH = "C:/Users/PONER_EL_USUARIO_AQUI/scoop/apps/gcc/current/include"
+        vim.env.LIBCLANG_PATH = "C:/Users/PONER_EL_USUARIO_AQUI/scoop/apps/llvm/current/bin"
+        vim.env.LLVM_LIB_DIR = "C:/Users/PONER_EL_USUARIO_AQUI/scoop/apps/llvm/current/lib"
+
+        require'nvim-treesitter.install'.compilers = { "gcc" }
 
         require("nvim-treesitter.configs").setup({
-            -- Poner los parsers del lenguajes especificos que necesitamos o bien se puede usar "all". 
             ensure_installed = {
                 "vimdoc", "javascript", "typescript", "c", "lua", "rust",
                 "jsdoc", "bash", "python", "c_sharp", "html", "java",
-		"json", "sql", "vim", "xml", "css"
+                "json", "sql", "vim", "xml", "css"
             },
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
-
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
             auto_install = true,
-
             indent = {
                 enable = true
             },
-
             highlight = {
-                -- `false` will disable the whole extension
                 enable = true,
-
-                -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
-                -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = { "markdown" },
             },
         })
@@ -51,3 +55,4 @@ return {
         vim.treesitter.language.register("templ", "templ")
     end
 }
+
