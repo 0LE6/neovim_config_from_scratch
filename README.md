@@ -1,8 +1,12 @@
+# First Neovim config from scratch
+
+⚠️ **WORK IN PROGRESS**: El contenido siguiente está en desarrollo activo y puede cambiar, no obstante es estable a día de hoy.
+
 ![Powershell](pic.png)
 
 ![Powershell2](pic2.png)
 
-# Config Windows
+## Config Windows
 Para que funcione en Windows se ha de hacer lo siguiete:
 
 Instalar __scoop__ como gestor de instalaciónd de paquetes desde este link https://scoop.sh/, copia el script de powershell que hay para su instalación y listo.
@@ -30,7 +34,7 @@ scoop install fd
 
 __NOTE:__ quizás se me escape algún detalle más, lo añadiriá aquí como update.
 
-# Config Linux o en su defecto WSL
+## Config Linux o en su defecto WSL
 
 ![Debian_Alacritty](pic3debian.png)
 
