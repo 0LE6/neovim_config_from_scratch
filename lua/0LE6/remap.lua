@@ -31,3 +31,29 @@ function SubstituteWordUnderCursor()
     vim.cmd('%s/\\<' .. word .. '\\>/' .. replacement .. '/g')  -- Sustituir en todo el documento
 end
 
+-- Sustitución de todos los registros de una palabra en todos los archivos del proyecto.
+-- <leader>sa teniendo el cursor sobre la palabra a cambiar ejecuta la sustitución.
+vim.keymap.set('n', '<Leader>sa', function()
+    local word = vim.fn.expand('<cword>')  -- obtenemos la palabra bajo el cursor
+    local replacement = vim.fn.input('Replace ' .. word .. ' with: ')  -- entramos la nueva palabra
+
+    -- Obtenemos todos los archivos del proyecto usando el comando de shell 'rg' (ripgrep) para encontrar todos los archivos.
+    local handle = io.popen('rg --files')
+    local result = handle:read("*a")
+    handle:close()
+
+    -- Separamos los resultados en diferentes líneas
+    local files = {}
+    for file in result:gmatch("[^\r\n]+") do
+        table.insert(files, file)
+    end
+
+    -- y luego realizamos la sustitución de cada palabra en cada archivo
+    for _, file in ipairs(files) do
+        vim.cmd('edit ' .. file)
+        vim.cmd('%s/\\<' .. word .. '\\>/' .. replacement .. '/ge | update')
+    end
+
+    -- terminamos mostrando que hemos sustituido todas las palabras en el proyecto. 
+    print('Replaced ' .. word .. ' with ' .. replacement .. ' in all project files.')
+end, { noremap = true, silent = true })
