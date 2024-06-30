@@ -27,7 +27,7 @@ vim.keymap.set('n', '<Leader>s', [[<cmd>lua SubstituteWordUnderCursor()<CR>]], {
 
 function SubstituteWordUnderCursor()
     local word = vim.fn.expand('<cword>')  -- Obtener la palabra bajo el cursor
-    local replacement = vim.fn.input('Replace ' .. word .. ' with: ')  -- Pedir al usuario la nueva palabra
+    local replacement = vim.fn.input('Replace ' .. word .. ' in this file with: ')  -- Pedir al usuario la nueva palabra
     vim.cmd('%s/\\<' .. word .. '\\>/' .. replacement .. '/g')  -- Sustituir en todo el documento
 end
 
@@ -35,7 +35,7 @@ end
 -- <leader>sa teniendo el cursor sobre la palabra a cambiar ejecuta la sustitución.
 vim.keymap.set('n', '<Leader>sa', function()
     local word = vim.fn.expand('<cword>')  -- obtenemos la palabra bajo el cursor
-    local replacement = vim.fn.input('Replace ' .. word .. ' with: ')  -- entramos la nueva palabra
+    local replacement = vim.fn.input('Replace ' .. word .. ' in all files with: ')  -- entramos la nueva palabra
 
     -- Obtenemos todos los archivos del proyecto usando el comando de shell 'rg' (ripgrep) para encontrar todos los archivos.
     local handle = io.popen('rg --files')
